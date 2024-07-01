@@ -15,37 +15,36 @@
         </div>
         <div class="col-xl-5">
           <div class="section-text text-center">
-            <h5 class="sub-title">Account</h5>
-            <h2 class="title">Welcome to KCoin</h2>
+            <h5 class="sub-title">Welcome to KCoin</h5>
+            <h2 class="title">Sign in now</h2>
             <p class="dont-acc">
-              Already have an account? <a href="login.html">Login</a>
+              Don't have an account yet? <a href="{% url "user_auths:sign-up" %}">Sign Up</a>
             </p>
-            <div class="reg-google">
+            {% comment %} <div class="reg-google">
               <a href="javascript:void(0)"
                 ><i class="fab fa-google"></i>Sign up with Google</a
               >
             </div>
-            <span class="or">Or Continue With</span>
+            <span class="or">Or Continue With</span> {% endcomment %}
           </div>
+
+          {% if messages %}
+            {% for message in messages %}
+                <strong> {{message}} </strong>
+            {% endfor %}
+          {% endif %}
+
           <form method="POST">
             {% csrf_token %}
             <div class="row">
               <div class="col-12">
                 <div class="single-input">
-                  {{ signup_form.username.label_tag }} {{ signup_form.username}}
+                  <input type="text" required name="email" id="logemail" placeholder="Enter your Email">
                 </div>
                 <div class="single-input">
-                  {{ signup_form.email.label_tag }} {{ signup_form.email }}
+                    <input type="password" required name="password" id="logemail" placeholder="Enter your Password">
                 </div>
-                <div class="single-input">
-                  {{ signup_form.password1.label_tag }} 
-                  {{ signup_form.password1}}
-                </div>
-                <div class="single-input">
-                  {{ signup_form.password2.label_tag }}
-                  {{signup_form.password2}}
-                </div>
-                <button class="cmn-btn w-100">Sign Up</button>
+                <button class="cmn-btn w-100">Login</button>
               </div>
             </div>
           </form>
