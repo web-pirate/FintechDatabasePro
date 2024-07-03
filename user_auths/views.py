@@ -2,12 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
-from user_auths.models import User
-from user_auths.forms import UserRegisterForm
+from user_auths.models import CustomUser
+from user_auths.forms import CustomUserRegistrationForm
 
 def RegisterView(request):
     if request.method == "POST": 
-        form = UserRegisterForm(request.POST)
+        form = CustomUserRegistrationForm(request.POST)
         if form.is_valid():
             new_user = form.save()
             username = form.cleaned_data.get("username")
@@ -20,7 +20,7 @@ def RegisterView(request):
         messages.warning(request, f"You are already logged in.")
         return redirect("core:index")
     else:
-        form = UserRegisterForm()
+        form = CustomUserRegistrationForm()
     context = {
         "signup_form": form
     }
@@ -45,7 +45,6 @@ def LoginView(request):
         except: 
                 messages.warning(request, "User does not exist.")
     return render(request, "user_auths/sign-in.html")
-
 
 def LogoutView(request):
     logout(request)

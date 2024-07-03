@@ -135,13 +135,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'user_auths.User'
+AUTH_USER_MODEL = 'user_auths.CustomUser'
 
 JAZZMIN_SETTINGS ={
     "site_title": "KCoin",
     "site_header": "KCoin",
     "site_brand": "Payment Made Easy...",
     # "site_logo": "path/logo.png",
-    "copyright": "- KCoin Company Ltd.",
+    "copyright": "- KCoin Company Ltd",
     # "order_with_respect_to": ["core", "user_auths", "transactions", "addons", "blog"]
 }
