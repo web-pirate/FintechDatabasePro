@@ -1,91 +1,6 @@
 {% extends "partials/dashboard-base.html" %}
 {% load static %}
     {% block content %}
-    <head>
-        <style>
-            :root {
-                --bg-color: #432f9f;
-                --text-color: #ffffff;
-                --button-bg-color: #ffffff;
-                --button-hover-bg-color: #f1f1f1;
-                --button-hover-text-color: #565A90;
-                --button-height: 35px;
-                --element-height: 55px;
-                --border-radius: 6px;
-                --button-border-radius: 10px;
-                --transition: all 0.3s ease;
-                --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                --hover-box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-            }
-            
-            #id_image,
-            #id_identity_image,
-            #id_signature {
-                background-color: var(--bg-color);
-                border-radius: var(--border-radius);
-                height: var(--element-height);
-                width: 100%;
-                color: var(--text-color);
-                box-shadow: var(--box-shadow);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1rem;
-                font-weight: 500;
-            }
-            
-            #id_image::file-selector-button,
-            #id_identity_image::file-selector-button,
-            #id_signature::file-selector-button {
-                border: none;
-                border-radius: var(--button-border-radius);
-                color: var(--bg-color);
-                background-color: var(--button-bg-color);
-                height: var(--button-height);
-                cursor: pointer;
-                transition: var(--transition);
-                padding: 0 1rem;
-                box-shadow: var(--box-shadow);
-            }
-            
-            #id_image::file-selector-button:hover,
-            #id_identity_image::file-selector-button:hover,
-            #id_signature::file-selector-button:hover {
-                background-color: var(--button-hover-bg-color);
-                color: var(--button-hover-text-color);
-                box-shadow: var(--hover-box-shadow);
-            }
-
-            {% comment %} #K {% endcomment %}
-            .responsive-container {
-                position: relative;
-                width: 100%;
-                max-width: 400px;
-                padding-bottom: 50%; /* Aspect ratio: 200px height / 400px width = 0.5 */
-                border-radius: 10px;
-                overflow: hidden;
-                margin-top: 10px;
-            }
-            
-            .responsive-image {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
-            .single-input {
-                display: flex;
-                flex-direction: column;
-            }
-            
-            .single-input label {
-                order: -1; 
-            }
-        </style>
-    </head>
     <!-- Dashboard Section start -->
     <section class="dashboard-section body-collapse account">
         <div class="overlay pt-120">
@@ -135,121 +50,56 @@
                             <div class="tab-main">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="nav-item" role="presentation">
-                                        <button class="nav-link active text-center" id="account-tab" data-bs-toggle="tab" data-bs-target="#account" type="button" role="tab" aria-controls="account" aria-selected="true">KYC Registration</button>
+                                        <button class="nav-link active" id="account-tab" data-bs-toggle="tab" data-bs-target="#account" type="button" role="tab" aria-controls="account" aria-selected="true">Account</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab" aria-controls="security" aria-selected="false">Security</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="payment-tab" data-bs-toggle="tab" data-bs-target="#payment" type="button" role="tab" aria-controls="payment" aria-selected="false">Payment Methods</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="notification-tab" data-bs-toggle="tab" data-bs-target="#notification" type="button" role="tab" aria-controls="notification" aria-selected="false">Notification</button>
                                     </li>
                                 </ul>
                                 <div class="tab-content mt-40">
                                     <div class="tab-pane fade show active" id="account" role="tabpanel" aria-labelledby="account-tab">
-                                        <form method="POST" enctype="multipart/form-data">
-                                            {% csrf_token %} 
-                                            <div class="upload-avatar">
-                                                <div class="avatar-left d-flex align-items-center">
-                                                    <div class="profile-img">
-                                                        <img src="{{kyc.image.url}}" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover;" alt="image">
-                                                    </div>
-                                                    <div class="instraction">
-                                                        {% comment %} <h6>Your Avatar</h6> {% endcomment %}
-                                                        {% comment %} <p>Profile picture size: 400px x 400px</p> {% endcomment %}
-                                                    </div>
+                                        <div class="upload-avatar">
+                                            <div class="avatar-left d-flex align-items-center">
+                                                <div class="profile-img">
+                                                    <img src="{% static 'assets1/images/owner-profile-2.png' %}" alt="image">
                                                 </div>
-                                                <div class="avatar-right">
-                                                    {{form.image}}
+                                                <div class="instraction">
+                                                    <h6>Your Avatar</h6>
+                                                    <p>Profile picture size: 400px x 400px</p>
                                                 </div>
                                             </div>
-                                        
+                                            <div class="avatar-right">
+                                                <div class="file-upload">
+                                                    <div class="right-area">
+                                                        <label class="file">
+                                                            <input type="file">
+                                                            <span class="file-custom"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <form action="#">
                                             <div class="row justify-content-center">
                                                 <div class="col-md-6">
                                                     <div class="single-input">
-                                                        <label for="fName">Full Name</label>
-                                                        {{form.full_name}}
+                                                        <label for="fName">First Name</label>
+                                                        <input type="text" id="fName" placeholder="Alfred">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="single-input">
-                                                        <label for="fName">Mobile Number</label>
-                                                        {{form.mobile}}
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="single-input">
-                                                        <label for="fName">Country</label>
-                                                        {{form.country}}
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="single-input">
-                                                        <label for="fName">State</label>
-                                                        {{form.state}}
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="single-input">
-                                                        <label for="fName">City</label>
-                                                        {{form.city}}
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="single-input">
-                                                        <label for="fName">Fax</label>
-                                                        {{form.fax}}
+                                                        <label for="lName">Last Name</label>
+                                                        <input type="text" id="lName" placeholder="Davis">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
-                                                    <div class="single-input">
-                                                        <label for="fName">Date of Birth</label>
-                                                        {{form.date_of_birth}}
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="single-input">
-                                                        <label for="fName">Gender Identity</label>
-                                                        {{form.gender}}
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="single-input">
-                                                        <label for="fName">Marital Status</label>
-                                                        {{form.marital_status}}
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <div class="single-input">
-                                                        <label for="fName">Identity Type</label>
-                                                        {{form.identity_type}}
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6" style="padding-top: 50px;">
-                                                    <div class="single-input">
-                                                        <label for="fName">Select Identity Image</label>
-                                                        {{form.identity_image}}
-                                                        {% if kyc.identity_image  %}
-                                                            <img src="{{kyc.identity_image.url}}" style="width: 400px; height: 200px; border-radius: 10px; object-fit: cover; margin-top:10px;" alt="">
-                                                        {% endif %}
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6" style="padding-top: 50px;">
-                                                    <div class="single-input">
-                                                        <label for="fName">Select Signature Image</label>
-                                                        {{form.signature}}
-                                                        {% if kyc.signature %}
-                                                            <div class="responsive-container">
-                                                                <img src="{{kyc.signature.url}}" class="responsive-image" alt="">
-                                                            </div>
-                                                        {% endif %}
-                                                    </div>
-                                                </div>
-                                                <br><br>
-
-
-
-
-
-
-
-
-
-
-                                                {% comment %} <div class="col-md-6"> 
                                                     <div class="single-input">
                                                         <label for="email">Email</label>
                                                         <div class="row input-status d-flex align-items-center">
@@ -267,7 +117,7 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="single-input">
-                                                        <label for="phone">Phone</label>6
+                                                        <label for="phone">Phone</label>
                                                         <div class="row input-status d-flex align-items-center">
                                                             <div class="col-6">
                                                                 <input type="text" id="phone" placeholder="(316) 555-0116">
@@ -309,10 +159,10 @@
                                                         <label for="address">Address</label>
                                                         <input type="text" id="address" placeholder="2972 Westheimer Rd. Santa Ana, Illinois 85486">
                                                     </div>
-                                                </div> {% endcomment %}
+                                                </div>
                                                 <div class="col-md-12">
                                                     <div class="btn-border">
-                                                        <button class="cmn-btn" type="submit">Submit KYC</button>
+                                                        <button class="cmn-btn">Account</button>
                                                     </div>
                                                 </div>
                                             </div>
