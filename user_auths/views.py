@@ -32,7 +32,7 @@ def LoginView(request):
         password = request.POST.get("password")
         
         try:
-            user = User.objects.get(email=email)
+            user = CustomUser.objects.get(email=email)
             user = authenticate(request, email=email, password=password)
             
             if user is not None:

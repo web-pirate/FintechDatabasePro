@@ -204,18 +204,28 @@
                     </ul>
                   </li>
                 </ul>
-                <div
-                  class="right-area header-action d-flex align-items-center max-un"
-                >
-                  <a href="login.html" class="login">Login</a>
-                  <a href="sign-up.html" class="cmn-btn"
-                    >Sign Up
-                    <i class="icon-d-right-arrow-2"></i>
-                  </a>
+                <div class="right-area header-action d-flex align-items-center max-un">
+                  {% if request.user.is_authenticated %}
+                    <a href="{% url "user_auths:sign-out" %}" class="login cmn-btn">Sign out</a>
+                  {% else %}
+                    <a href="{% url "user_auths:sign-in" %}" class="login">Login</a>
+                    <a href="{% url "user_auths:sign-up" %}" class="cmn-btn"
+                      >Sign Up 
+                      &nbsp;
+                      <i class="fas fa-caret-right"></i>
+                    </a>
+                  {% endif %}
                 </div>
               </div>
             </nav>
           </div>
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{message.tags}}">
+                <strong>{{message}}</strong>
+              </div>
+            {% endfor %}
+          {% endif %}
         </div>
       </div>
     </header>
