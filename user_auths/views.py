@@ -15,10 +15,10 @@ def RegisterView(request):
             new_user = authenticate(username = form.cleaned_data.get('email'), 
                                     password=form.cleaned_data.get('password1'))
             login(request, new_user)
-            return redirect("core:index")
+            return redirect("account:account")
     elif request.user.is_authenticated:
         messages.warning(request, f"You are already logged in.")
-        return redirect("core:index")
+        return redirect("account:account")
     else:
         form = CustomUserRegistrationForm()
     context = {
@@ -38,7 +38,7 @@ def LoginView(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, "You have successfully logged in.")
-                return redirect("core:index")
+                return redirect("account:account")
             else: 
                 messages.warning(request, "Username or password is incorrect.")
                 return redirect("user_auths:sign-in")

@@ -7,7 +7,7 @@ from django.db.models.signals import post_save
 ACCOUNT_STATUS = (
     ("active", "Active"),
     ("pending", "Pending"),
-    ("in-active", "Inactive")
+    ("inactive", "Inactive")
 )
 
 MARITAL_STATUS = (
@@ -24,7 +24,7 @@ GENDER = (
 
 IDENTITY_TYPE = (
     ("national_id_card", "National ID Card"),
-    ("drivers_licence", "Driver's License"),
+    ("drivers_license", "Driver's License"),
     ("international_passport", "International Passport")
 )
 
@@ -43,7 +43,7 @@ class Account(models.Model):
     account_id = ShortUUIDField(unique=True, length=7, max_length=25, prefix="DEX", alphabet="1234567890") #DEX7386
     pin_number = ShortUUIDField(unique=True, length=4, max_length=7, alphabet="1234567890") # e.g., 9376 
     ref_code = ShortUUIDField(unique=True, length=10, max_length=20, alphabet="abcdefgh1234567890")
-    account_status = models.CharField(max_length=100, choices=ACCOUNT_STATUS, default="in-active")
+    account_status = models.CharField(max_length=100, choices=ACCOUNT_STATUS, default="inactive")
     date = models.DateTimeField(auto_now_add=True)      
     kyc_submitted = models.BooleanField(default=False)
     kyc_confirmed = models.BooleanField(default=False)
