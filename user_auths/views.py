@@ -37,13 +37,18 @@ def LoginView(request):
             
             if user is not None:
                 login(request, user)
-                messages.success(request, "You are logged in successfully.")
+                messages.success(request, "You have successfully logged in.")
                 return redirect("core:index")
             else: 
                 messages.warning(request, "Username or password is incorrect.")
                 return redirect("user_auths:sign-in")
         except: 
-                messages.warning(request, "User does not exist.")
+            messages.warning(request, "User does not exist.")
+    
+    if request.user.is_authenticated:
+        messages.warning(request, "You are already logged in.")
+        return redirect("account:account")
+        
     return render(request, "user_auths/sign-in.html")
 
 def LogoutView(request):

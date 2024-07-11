@@ -1,6 +1,16 @@
 {% extends "partials/dashboard-base.html" %}
 {% load static %}
     {% block content %}
+
+    <head>
+        <style>
+            .nav-link {
+                font-size: 16px; /* Adjust the font size as needed */
+                padding: 5px 8px; /* Adjust the padding to reduce the size */
+            }
+        </style> 
+    </head>
+
     <!-- Dashboard Section start -->
     <section class="dashboard-section body-collapse account">
         <div class="overlay pt-120">
@@ -11,7 +21,7 @@
                             <div class="owner-details">
                                 <div class="profile-area">
                                     <div class="profile-img">
-                                        <img src="{% static 'assets1/images/owner-profile.png' %}" alt="image">
+                                        <img src="{{kyc.image.url}}" alt="image">
                                     </div>
                                     <div class="name-area">
                                         <h6>Alfred Davis</h6>
@@ -48,7 +58,7 @@
                         </div>
                         <div class="col-xxl-9 col-xl-8">
                             <div class="tab-main">
-                                <ul class="nav nav-tabs" role="tablist">
+                                <ul class="nav nav-tabs justify-content-center" role="tablist">
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link active" id="account-tab" data-bs-toggle="tab" data-bs-target="#account" type="button" role="tab" aria-controls="account" aria-selected="true">Account</button>
                                     </li>
@@ -56,7 +66,7 @@
                                         <button class="nav-link" id="security-tab" data-bs-toggle="tab" data-bs-target="#security" type="button" role="tab" aria-controls="security" aria-selected="false">Security</button>
                                     </li>
                                     <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="payment-tab" data-bs-toggle="tab" data-bs-target="#payment" type="button" role="tab" aria-controls="payment" aria-selected="false">Payment Methods</button>
+                                        <button class="nav-link" id="payment-tab" data-bs-toggle="tab" data-bs-target="#payment" type="button" role="tab" aria-controls="payment" aria-selected="false">Payments</button>
                                     </li>
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="notification-tab" data-bs-toggle="tab" data-bs-target="#notification" type="button" role="tab" aria-controls="notification" aria-selected="false">Notification</button>

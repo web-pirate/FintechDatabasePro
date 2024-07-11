@@ -39,12 +39,12 @@ class Account(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE) 
     account_balance = models.DecimalField(max_digits=12, decimal_places=2, default=0.00) #123 345 789 102
-    account_number = ShortUUIDField(unique=True, length=10, max_length=25, prefix="217", alphabet="1234567890") #2175893745837
-    account_id = ShortUUIDField(unique=True, length=7, max_length=25, prefix="DEX", alphabet="1234567890") #2175893745837
+    account_number = ShortUUIDField(unique=True, length=10, max_length=25, prefix="217", alphabet="1234567890") #2175893745
+    account_id = ShortUUIDField(unique=True, length=7, max_length=25, prefix="DEX", alphabet="1234567890") #DEX7386
     pin_number = ShortUUIDField(unique=True, length=4, max_length=7, alphabet="1234567890") # e.g., 9376 
     ref_code = ShortUUIDField(unique=True, length=10, max_length=20, alphabet="abcdefgh1234567890")
     account_status = models.CharField(max_length=100, choices=ACCOUNT_STATUS, default="in-active")
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(auto_now_add=True)      
     kyc_submitted = models.BooleanField(default=False)
     kyc_confirmed = models.BooleanField(default=False)
     recommended_by = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING, blank=True, null=True, related_name="recommended_by")
