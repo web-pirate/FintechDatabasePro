@@ -41,29 +41,41 @@
                         </div>
                         <p class="recipients-item">200 Recipients</p>
                     </div> {% endcomment %}
-                    <form action="#" class="flex-fill">
+                    <form method="POST" class="flex-fill">
+                        {% csrf_token %}
                         <div class="form-group d-flex align-items-center">
                             <img src="{% static 'assets1/images/icon/search.png' %}" alt="icon">
-                            <input type="text" placeholder="Enter account number">
+                            <input type="text" name="account_number" placeholder="Enter account number or ID">
+                            <button type="submit"><i class="fas fa-angle-right"></i></button>
                         </div>
                     </form>
+                    {% if query %}
+                        <p>Results for: <b>{{query|title}}</b></p>
+                    {% endif %}
                     <div class="user-select">
-                        {% for acc in account  %}
-                            <div class="single-user">
-                                <div class="left d-flex align-items-center">
-                                    <div class="img-area">
-                                        <img src="{{ acc.user.kyc.image.url }}" style="width: 100px; height:100px; border-radius:50%; object-fit:cover;" alt="image">
+                        {% if query %}                        
+                            {% for acc in account  %}
+                                <div class="single-user">
+                                    <div class="left d-flex align-items-center">
+                                        <div class="img-area">
+                                            <img src="{{ acc.user.kyc.image.url }}" style="width: 100px; height:100px; border-radius:50%; object-fit:cover;" alt="image">
+                                        </div>
+                                        <div class="text-area">
+                                            <p>{{acc.user.kyc.full_name|title}}</p>
+                                            <span class="mdr"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="773f12051a1619444237101a161e1b5914181a">{{acc.user.email}}</a></span><br>
+                                            <span class="mdr">{{acc.account_number}}</span>
+                                        </div>
                                     </div>
-                                    <div class="text-area">
-                                        <p>{{acc}}</p>
-                                        <span class="mdr"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="773f12051a1619444237101a161e1b5914181a">[email&#160;protected]</a></span>
+                                    <div class="right">
+                                        <a href="">Choose</a>
                                     </div>
+                                </div>  
+                                {% empty %}
+                                <div class="text-center mt-5">
+                                    <h5>Account does not exist.</h5>
                                 </div>
-                                <div class="right">
-                                    <a href="javascript:void(0)">Choose</a>
-                                </div>
-                            </div>                        
-                        {% endfor %}
+                            {% endfor %}
+                        {% endif %}
                     </div>
                     <div class="footer-area mt-40">
                         <a href="pay.html">Previous Step</a>
