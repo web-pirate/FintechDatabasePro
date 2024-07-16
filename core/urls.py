@@ -8,7 +8,6 @@ urlpatterns = [
     path("", views.index, name="index"),
     
     # Money Transfers
-    path("search-account/", transfer.search_users_by_account_number, name="search-account")
-
-
+    path("search-account/", transfer.search_users_by_account_number, name="search-account"),
+    path("amount-transfer/<account_number>/", transfer.amount_transfer, name="amount-transfer")
 ]
