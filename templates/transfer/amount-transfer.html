@@ -58,6 +58,29 @@
                             <p id="new_balance"></p>
                             <p class="text-danger" id="error-div"></p>
                         </div>
+                        <script>
+                            function CalculateBalance(){
+                                let available_balance = "{{ request.user.account.account_balance}}" //Get users current account Balance
+                                let new_balance = document.getElementById("new_balance")
+                                let send_amount_input = document.getElementById("amount-send").value
+                                let errorDiv = document.getElementById("error-div")
+                                let total_to_pay = document.getElementById("total-to-pay")
+                                
+                                let errors = []
+
+                                calculated_new_balance = available_balance - send_amount_input;
+                                new_balance.innerHTML = `Resulting Balance:<b>$${calculated_new_balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</b>`;
+                                total_to_pay.innerHTML = `USD<b>$${send_amount_input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</b>`;
+
+                                if (calculated_new_balance < 0){
+                                    new_balance.style.color = "red";
+                                    alert("Insufficient funds: Account ineligible to send more than $" + available_balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+                                } else {
+                                    new_balance.style.color = "#27276e"
+                                }
+                            }
+                        </script>
+
                         <ul class="total-fees">
                             <li>Total Fees</li>
                             <li>Free</li>
