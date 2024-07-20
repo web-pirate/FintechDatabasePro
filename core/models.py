@@ -20,7 +20,7 @@ TRANSACTION_STATUS = (
 )
 
 class Transaction(models.Model):
-    transaction_uid = ShortUUIDField(unique=True, length=15, max_length=20, prefix="TRN")
+    transaction_id = ShortUUIDField(unique=True, length=15, max_length=20, prefix="TRN")
     
     user = models.ForeignKey(CustomUser, on_delete=models.SET_NULL, null=True, related_name="user")
     amount = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)

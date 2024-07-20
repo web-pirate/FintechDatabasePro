@@ -8,37 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>KCoin - Money Transfer and Online Payments Dashboard</title>
 
-    <link rel="shortcut icon" href="assets1/images/fav.png" type="image/x-icon"/>
+    <link rel="shortcut icon" href="{% static 'assets/images/kcoin_fav.png'%}" type="image/x-icon"/>
     <link rel="stylesheet" href="{% static 'assets1/css/bootstrap.min.css' %}"/>
-
-    {% comment %} <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css"
-      integrity="sha512-GQGU0fMMi238uA+a/bdWJfpUGKUkBdgfFdgBm72SUQ6BeyWjoY/ton0tEjH+OSH9iP4Dfh+7HM0I9f5eR0L/4w=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    /> {% endcomment %}
-
     <link rel="stylesheet" href="{% static 'assets1/css/fontawesome.min.css' %}"/>
-    
-    {% comment %} <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    /> {% endcomment %}
-
     <link rel="stylesheet" href="{% static 'assets1/css/jquery-ui.css' %}" />
-    
-    {% comment %} <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css"
-      integrity="sha512-ELV+xyi8IhEApPS/pSj66+Jiw+sOT1Mqkzlh8ExXihe4zfqbWkxPRi8wptXIO9g73FSlhmquFlUOuMSoXz5IRw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    /> {% endcomment %}
-
     <link rel="stylesheet" href="{% static 'assets1/css/plugin/apexcharts.css' %}"/>
     <link rel="stylesheet" href="{% static 'assets1/css/plugin/nice-select.css' %}"/>
     <link rel="stylesheet" href="{% static 'assets1/css/arafat-font.css' %}" />
@@ -236,122 +209,14 @@
                 <i class="fa-solid fa-xmark"></i>
               </div>
               <div class="sidebar-logo">
-                <a href="dashboard.html"
-                  ><img src="{% static 'assets1/images/logo.png' %}" alt="logo"
-                /></a>
+                <a href="dashboard.html">
+                  <img src="{% static 'assets/images/kcoin_logo.png' %}" alt="logo"/>
+                </a>
               </div>
-              <ul>
-                <li>
-                  <a href="dashboard.html">
-                    <img
-                      src="{% static 'assets1/images/icon/dashboard.png' %}"
-                      alt="Dashboard"
-                    />
-                    <span>Dashboard</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="transactions.html">
-                    <img
-                      src="{% static 'assets1/images/icon/transactions.png' %}"
-                      alt="Transactions"
-                    />
-                    <span>Transactions</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="pay.html">
-                    <img
-                      src="{% static 'assets1/images/icon/pay.png' %}"
-                      alt="Pay"
-                    />
-                    <span>Pay</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="receive-step-1.html">
-                    <img
-                      src="{% static 'assets1/images/icon/receive.png' %}"
-                      alt="Receive"
-                    />
-                    <span>Receive</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="money-exchange.html">
-                    <img
-                      src="{% static 'assets1/images/icon/exchange.png' %}"
-                      alt="Exchange"
-                    />
-                    <span>Exchange</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="recipients.html">
-                    <img
-                      src="{% static 'assets1/images/icon/recipients.png' %}"
-                      alt="Recipients"
-                    />
-                    <span>Recipients</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="crypto.html">
-                    <img
-                      src="{% static 'assets1/images/icon/crypto.png' %}"
-                      alt="Crypto"
-                    />
-                    <span>Crypto</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="deposit-money.html">
-                    <img
-                      src="{% static 'assets1/images/icon/deposit.png' %}"
-                      alt="Deposit"
-                    />
-                    <span>Deposit Money</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="withdraw-money-step-1.html">
-                    <img
-                      src="{% static 'assets1/images/icon/withdraw.png' %}"
-                      alt="Withdraw"
-                    />
-                    <span>Withdraw Money</span>
-                  </a>
-                </li>
-              </ul>
-              <ul class="bottom-item">
-                <li class="active">
-                  <a href=" {% url "account:account" %} ">
-                    <img
-                      src="{% static 'assets1/images/icon/account.png' %}"
-                      alt="Account"
-                    />
-                    <span>Account</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)">
-                    <img
-                      src="{% static 'assets1/images/icon/support.png' %}"
-                      alt="Support"
-                    />
-                    <span>Support</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="javascript:void(0)">
-                    <img
-                      src="{% static 'assets1/images/icon/quit.png' %}"
-                      alt="Quit"
-                    />
-                    <span>Quit</span>
-                  </a>
-                </li>
-              </ul>
+              
+              
+              
+              
               <div class="pt-120">
                 <div class="invite-now">
                   <div class="img-area">

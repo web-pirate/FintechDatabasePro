@@ -43,20 +43,26 @@
                             </div>
                         </div>
                     </div>
-                    <form action="#">
+                    <form action="{% url "core:amount-transfer-process" account.account_number %}" method="POST">
+                        {% csrf_token %}
                         <div class="send-banance">
                             <span class="mdr">You Send</span>
                             <div class="input-area">
-                                <input class="xxlr" onkeyup="CalculateBalance()" placeholder="{{request.user.account.account_balance|intcomma}}" type="number" id="amount-send">
+                                <input class="xxlr" onkeyup="CalculateBalance()" placeholder="{{request.user.account.account_balance|intcomma}}" type="number" name="amount-send" id="amount-send">
                                 <select>
-                                    <option value="1">USD</option>
+                                    <option value="1">PHP</option>
                                     <option value="2">USD</option>
-                                    <option value="3">USD</option>
+                                    <option value="3">AUS</option>
                                 </select>
                             </div>
                             <p>Available Balance:<b>{{request.user.account.account_balance|intcomma}}</b></p>
                             <p id="new_balance"></p>
                             <p class="text-danger" id="error-div"></p>
+                            <br>
+                            <span class="mdr">Payment Description</span>
+                            <div class="input-area">
+                                <input class="xxlr" onkeyup="CalculateBalance()" placeholder="Enter payment description (e.g., School Fees)" type="text" name="description">
+                            </div>
                         </div>
                         <script>
                             function CalculateBalance(){
@@ -70,7 +76,7 @@
 
                                 calculated_new_balance = available_balance - send_amount_input;
                                 new_balance.innerHTML = `Resulting Balance:<b>$${calculated_new_balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</b>`;
-                                total_to_pay.innerHTML = `USD<b>$${send_amount_input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</b>`;
+                                total_to_pay.innerHTML = `PHP<b>$${send_amount_input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</b>`;
 
                                 if (calculated_new_balance < 0){
                                     new_balance.style.color = "red";
@@ -90,12 +96,12 @@
                                 <h5>Total To Pay</h5>
                             </li>
                             <li>
-                                <h5 id="total-to-pay">USD 0.00</h5>
+                                <h5 id="total-to-pay">PHP 0.00</h5>
                             </li>
                         </ul>
                         <div class="footer-area mt-40">
                             <a href="pay-step-1.html">Previous Step</a>
-                            <a href="pay-step-3.html" class="active">Next</a>
+                            <button type="submit" style="padding: 10px 30px; border-radius:10px; background: rgb(98, 0, 255); color: #fff; " class="active">Next</button>
                         </div>
                     </form>
                 </div>

@@ -71,6 +71,10 @@
         scroll-behavior: smooth
     }
 }
+/* Adding my own */
+.icon-spacing {
+    margin-right: 8px;
+  }
 
 body {
     margin: 0;
