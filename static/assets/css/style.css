@@ -11,7 +11,7 @@
 ============================================*/
 
 @import url("https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700;800;900&display=swap");
-:root {
+/* :root {
     --body-font: "Jost", sans-serif;
     --body-color: #FFFFFF;
     --primary-color: #4743c9;
@@ -22,7 +22,21 @@
     --para-color: #0c266c;
     --border-color: #868ea5;
     --hover-alt-color: #291b6b;
+} */
+
+:root {
+    --body-font: "Jost", sans-serif;
+    --body-color: #FFFFFF;
+    --primary-color: #ee7b64;
+    --secondary-color: #ff9a8b; 
+    --head-color: #c94f3b; 
+    --section-primary-color: #f8e3e0;
+    --section-color: #fbe6e2; 
+    --border-color: #e1a89f; 
+    --hover-alt-color: #d85a45; 
+    --para-color: #415058;
 }
+
 
 .collapsing {
     transition: 0.3s;
@@ -100,7 +114,7 @@ img {
 }
 
 .max-un {
-    max-width: unset;
+    max-width: 150%;
 }
 
 .d-rtl {
@@ -138,16 +152,16 @@ textarea {
 }
 
 ::placeholder {
-    color: rgba(12, 38, 110, 0.502);
+    color: rgba(238, 100, 100, 0.6); 
     opacity: 1;
 }
 
 :-ms-input-placeholder {
-    color: rgba(12, 38, 110, 0.502);
+    color: rgba(238, 100, 100, 0.6); 
 }
 
 ::-ms-input-placeholder {
-    color: rgba(12, 38, 110, 0.502);
+    color: rgba(238, 100, 100, 0.6); 
 }
 
 input::-webkit-outer-spin-button,
@@ -158,10 +172,6 @@ input::-webkit-inner-spin-button {
 
 input[type="number"] {
     -moz-appearance: textfield;
-}
-
-input[type="password"] {
-    font-family: initial;
 }
 
 input[type="checkbox"] {
@@ -214,44 +224,44 @@ iframe {
 
 h1,
 h1>a {
-    font-size: 76px;
-    line-height: 98.8px;
-    margin-top: -20px;
+    font-size: 60.8px; 
+    line-height: 79px;  
+    margin-top: -16px; 
 }
 
 h2,
 h2>a {
-    font-size: 57px;
-    line-height: 74.1px;
-    margin-top: -16px;
+    font-size: 45.6px;  
+    line-height: 59.28px; 
+    margin-top: -12.8px;  
 }
 
 h3,
 h3>a {
-    font-size: 43px;
-    line-height: 55.9px;
-    margin-top: -10px;
+    font-size: 34.4px;  
+    line-height: 44.72px; 
+    margin-top: -8px;  
 }
 
 h4,
 h4>a {
-    font-size: 32px;
-    line-height: 41.6px;
-    margin-top: -8px;
+    font-size: 25.6px; 
+    line-height: 33.28px; 
+    margin-top: -6.4px; 
 }
 
 h5,
 h5>a {
-    font-size: 24px;
-    line-height: 31.2px;
-    margin-top: -6px;
+    font-size: 19.2px; 
+    line-height: 24.96px;  
+    margin-top: -4.8px; 
 }
 
 h6,
 h6>a {
-    font-size: 18px;
-    line-height: 23.4px;
-    margin-top: -4px;
+    font-size: 14.4px;  
+    line-height: 18.72px;  
+    margin-top: -3.2px;  
 }
 
 h1.m-none,
@@ -288,7 +298,7 @@ label {
 }
 
 .section-text {
-    margin-bottom: 16px;
+    margin-bottom: 10px;
 }
 
 .section-header {
@@ -311,7 +321,7 @@ label {
 
 .title {
     font-weight: 700;
-    margin-bottom: 12px;
+    /* margin-bottom: 6px; */
 }
 
 .xxlr {
@@ -416,18 +426,21 @@ label {
 }
 
 *::-webkit-scrollbar-track {
-    background: #00003e;
+    background: #fbe6e2; /* Light section color to match the new palette */
 }
 
 *::-webkit-scrollbar {
     width: 6px;
 }
 
-*::-webkit-scrollbar-button,
 *::-webkit-scrollbar-thumb {
-    background-color: #5732c6;
+    background-color: #ee7b64; /* New primary color */
+    border-radius: 3px; /* Optional: adds rounded corners to the scrollbar thumb */
 }
 
+*::-webkit-scrollbar-button {
+    background-color: #ee7b64; /* Matches the scrollbar thumb */
+}
 .scrollToTop {
     position: fixed;
     bottom: 0;
@@ -626,8 +639,8 @@ label {
     left: 0;
     width: 100%;
     z-index: 999;
-    background-color: var(--bs-white);
-    border-bottom: 1px solid #6c6ea6;
+    background-color: var(--body-color); 
+    border-bottom: 1px solid var(--border-color); 
 }
 
 .header-section.header-fixed {
@@ -762,7 +775,7 @@ label {
 }
 
 .banner-section .overlay {
-    background-color: #f2f3f9;
+    background-color: #f9f2f2;
     background-image: url(../images/banner-map.png);
     background-repeat: no-repeat;
     background-position: top 100px right;
@@ -777,19 +790,19 @@ label {
 .banner-section .overlay .shape-area .obj-1 {
     left: 0;
     bottom: 5%;
-    animation: ripple2Ani 4s linear infinite;
+    animation: ripple2Ani 4s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
 }
 
 .banner-section .overlay .shape-area .obj-2 {
     right: 0;
     bottom: calc(5%);
-    animation: rippleAni 3s linear infinite;
+    animation: ripple2Ani 3s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
 }
 
 .banner-section .overlay .shape-area .obj-3 {
     left: calc(48%);
     bottom: 12%;
-    animation: ripple2Ani 5s linear infinite;
+    animation: ripple2Ani 5s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
 }
 
 .banner-section .overlay .shape-area .obj-4 {
@@ -823,11 +836,11 @@ label {
     border-radius: 10px;
     padding: 20px;
     background-color: white;
-    box-shadow: 2px 3.464px 24px 0px rgba(106, 105, 194, 0.25);
+    box-shadow: 2px 3.464px 24px 0px rgba(194, 105, 105, 0.25);
 }
 
 .banner-section .overlay .banner-content .send-money .currency-area {
-    background-color: #edefff;
+    background-color: #ffeded;
     border-radius: 5px;
     display: flex;
     align-items: center;
@@ -845,8 +858,8 @@ label {
 }
 
 .banner-section .overlay .banner-content .send-money .currency-area .right-side .nice-select:after {
-    border-bottom: 2px solid #0c266c;
-    border-right: 2px solid #0c266c;
+    border-bottom: 2px solid #c94f3b; 
+    border-right: 2px solid #c94f3b;
     height: 13px;
     right: 18px;
     top: initial;
@@ -1300,8 +1313,8 @@ label {
 
 .banner-section.help-center .overlay form .form-group {
     border-radius: 10px;
-    border: 1px solid #86aaee;
-    background-color: #38578f;
+    border: 1px solid #e1a89f; 
+    background-color: #fbe6e2;
     padding-left: 20px;
 }
 
@@ -1349,7 +1362,7 @@ label {
 .footer-section::before {
     content: "";
     position: absolute;
-    background-color: #0a2843;
+    background-color: #ee7b64; 
     width: 100%;
     height: 60%;
     z-index: -1;
@@ -1436,8 +1449,8 @@ label {
     content: "";
     width: 70%;
     border-radius: 20px;
-    background-color: white;
-    box-shadow: 2px 3.464px 24px 0px rgba(106, 105, 194, 0.25);
+    background-color: #f5f6fc; 
+    box-shadow: 2px 3.464px 24px 0px rgba(238, 123, 100, 0.25);
     height: 100%;
     top: 0;
     left: 15%;
@@ -1445,7 +1458,7 @@ label {
 }
 
 .counter-section .single-area h2 {
-    color: #4743c9;
+    color: #c94f3b; 
 }
 
 .counter-section .single-area h2 span {
@@ -2725,11 +2738,11 @@ label {
 }
 
 .login-reg .single-input {
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
 .login-reg .single-input label {
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .login-reg a,
@@ -2742,7 +2755,7 @@ label {
 }
 
 .login-reg .reg-google {
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .login-reg .reg-google a {
@@ -2763,7 +2776,7 @@ label {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 24px;
+    margin-top: 18px;
 }
 
 .login-reg .or::after,
@@ -3862,8 +3875,8 @@ label {
         .logo {
         margin-top: 5px;
         position: relative;
-        width: 126px;
-        height: 27px;
+        width: 138px;
+        height: 38px;
         /* object-fit: fill; */
         }
         .logo span {
