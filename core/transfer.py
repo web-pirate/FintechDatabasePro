@@ -3,6 +3,7 @@ from account .models import Account
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib import messages
+from decimal import Decimal
 from core.models import Transaction
 
 @login_required
@@ -49,7 +50,7 @@ def amount_transfer_process(request, account_number):
         amount = request.POST.get("amount-send")
         description = request.POST.get("description")
         
-        if sender_account.account_balance > 0 and amount:
+        if sender_account.account_balance >= Decimal(amount):
             new_transaction = Transaction.objects.create(
                 user=request.user,
                 amount=amount,
@@ -87,3 +88,52 @@ def transfer_confirmation(request, account_number, transaction_id):
         "transaction": transaction,
     }
     return render(request, "transfer/transfer-confirmation.html", context)
+
+def transfer_process(request, account_number, transaction_id):
+    account = Account.objects.get(account_number=account_number)
+    transaction = Transaction.objects.get(transaction_id=transaction_id)
+    
+    sender = request.user
+    recipient = account.user
+    
+    sender_account = request.user.account 
+    recipient_account = account 
+    
+    completed = False
+    
+    if request.method == "POST":
+        pin_number = request.POST.get("pin-number")
+        
+        if pin_number == sender_account.pin_number:
+            transaction.status = "completed"
+            transaction.save()
+
+            sender_account.account_balance -= transaction.amount
+            sender_account.save()
+            
+            account.account_balance += transaction.amount
+            account.save()
+            
+            messages.success(request, "Transfer Successful.")
+            return redirect("core:transfer-completed", account.account_number, transaction.transaction_id)
+        else:
+            messages.warning(request, "Incorrect Pin Number")
+            return redirect("core:transfer-confirmation", account.account_number, transaction.transaction_id)
+    else: 
+        messages.warning(request, "An error occurred, try again later.")
+        return redirect("account:account")
+
+def transfer_completed(request, account_number, transaction_id):
+    
+    try: 
+        account = Account.objects.get(account_number=account_number)
+        transaction = Transaction.objects.get(transaction_id=transaction_id)
+    except:
+        messages.warning(request, "Transfer does not exist.")
+        return redirect("account:account")
+    
+    context = {
+        "account": account,
+        "transaction": transaction,
+    }
+    return render(request, "transfer/transfer-completed.html", context)
