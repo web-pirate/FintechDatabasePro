@@ -55,7 +55,7 @@
                                     <option value="3">AUS</option>
                                 </select>
                             </div>
-                            <p>Available Balance:<b>{{request.user.account.account_balance|intcomma}}</b></p>
+                            <p>Available Balance:<b>₱{{request.user.account.account_balance|intcomma}}</b></p>
                             <p id="new_balance"></p>
                             <p class="text-danger" id="error-div"></p>
                             <br>
@@ -75,12 +75,12 @@
                                 let errors = []
 
                                 calculated_new_balance = available_balance - send_amount_input;
-                                new_balance.innerHTML = `Resulting Balance:<b>$${calculated_new_balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</b>`;
-                                total_to_pay.innerHTML = `PHP<b>$${send_amount_input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</b>`;
+                                new_balance.innerHTML = `Resulting Balance:<b>₱${calculated_new_balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</b>`;
+                                total_to_pay.innerHTML = `PHP<b>${send_amount_input.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</b>`;
 
                                 if (calculated_new_balance < 0){
                                     new_balance.style.color = "red";
-                                    alert("Insufficient funds: Account ineligible to send more than $" + available_balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
+                                    alert("Insufficient funds: Account ineligible to send more than ₱" + available_balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
                                 } else {
                                     new_balance.style.color = "#27276e"
                                 }

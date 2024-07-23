@@ -33,7 +33,7 @@ def amount_transfer(request, account_number):
         messages.warning(request, "Account does not exist.")
         return redirect("core:search-account")
     
-    context = {
+    context = { 
         "account": account,
     }
     return render(request, "transfer/amount-transfer.html", context)
