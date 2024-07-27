@@ -22,8 +22,9 @@
                                 <img src="{% static 'assets1/images/icon/submitted-icon.png' %}" alt="icon">
                             </div>
                             <h3>Submitted</h3>
-                            <p>Payment request <small><b>{{transaction.transaction_id}}</b></small> was sent to <b>{{account.user.kyc.full_name}}</b></p>
-                            <h5><a href=""><b>View Details</b></a> | <a href=""><b>Send another payment</b></a></h5>
+                            <p>Amount transfer <small><b><u>{{transaction.transaction_id}}</u></b></small> was sent to <b>{{account.user.kyc.full_name}}</b></p>
+                            <hr>
+                            <a href=""><small>View Details</small></a> | <a href=""><small>Send another Payment</small></a>
                         </div>
                     </div>
                 </div>

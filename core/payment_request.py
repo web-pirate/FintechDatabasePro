@@ -55,7 +55,7 @@ def amount_request_process(request, account_number):
             sender_account=request_sender_account,
             recipient_account=request_recipient_account,
             
-            status="requested",
+            status="request_processing",
             transaction_type="request",
         )
         new_request.save()
@@ -77,3 +77,29 @@ def amount_request_confirmation(request, account_number, transaction_id):
     }
     
     return render(request, "payment_request/amount-request-confirmation.html", context)
+
+def amount_request_dispatch(request, account_number, transaction_id):
+    account = Account.objects.get(account_number=account_number)
+    transaction = Transaction.objects.get(transaction_id=transaction_id)
+
+    if request.method == "POST":
+        pin_number = request.POST.get("pin-number")
+        if pin_number == request.user.account.pin_number:
+            transaction.status = "request_sent"
+            transaction.save()
+            messages.success(request, "Your payment request has been sent successfully.")
+            return redirect("core:amount-request-completed", account.account_number, transaction.transaction_id)
+    else:
+        messages.warning(request, "An error occurred, please try again later.") 
+        return redirect("account:dashboard")
+    
+def amount_request_completed(request, account_number, transaction_id):
+    account = Account.objects.get(account_number=account_number)
+    transaction = Transaction.objects.get(transaction_id=transaction_id)
+    
+    context = {
+        "account": account,
+        "transaction": transaction,
+    }
+    
+    return render(request, "payment_request/amount-request-completed.html", context)
