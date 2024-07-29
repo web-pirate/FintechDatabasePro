@@ -28,4 +28,7 @@ urlpatterns = [
     path("amount-request-confirmation/<account_number>/<transaction_id>/", payment_request.amount_request_confirmation, name="amount-request-confirmation"),
     path("amount-request-dispatch/<account_number>/<transaction_id>/", payment_request.amount_request_dispatch, name="amount-request-dispatch"),
     path("amount-request-completed/<account_number>/<transaction_id>/", payment_request.amount_request_completed, name="amount-request-completed"),
+    
+    # Payment Request Settlement 
+    path("settlement-confirmation/<account_number>/<transaction_id>/", payment_request.settlement_confirmation, name="settlement-confirmation"),
 ]

@@ -303,8 +303,8 @@
                               <p>+₱{{req_receipt_trn.amount|intcomma}}</p>
                             </td>
                             <td>
-                              <a href="{% url "core:transaction-detail" sent_trn.transaction_id %}" class="btn btn-primary">Settle <i class="fas fa-check-circle"></i> </a>
-                              <a href="{% url "core:transaction-detail" sent_trn.transaction_id %}" class="btn btn-danger">Cancel <i class="fas fa-x"></i> </a>
+                              <a href="{% url "core:settlement-confirmation" req_receipt_trn.sender.account.account_number req_receipt_trn.transaction_id %}" class="btn btn-primary">Settle <i class="fas fa-check-circle"></i> </a>
+                              <a href="{% url "core:transaction-detail" req_receipt_trn.transaction_id %}" class="btn btn-danger">Cancel <i class="fas fa-x"></i> </a>
                             </td>
                           </tr>
                         {% empty %}
