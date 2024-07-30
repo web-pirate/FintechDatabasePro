@@ -241,8 +241,11 @@
                               <p>+₱{{req_sender_trn.amount|intcomma}}</p>
                             </td>
                             <td>
-                              <a href="{% url "core:transaction-detail" req_sender_trn.transaction_id %}" class="btn btn-primary">View <i class="fas fa-eye"></i> </a>
-                              <a href="{% url "core:transaction-detail" req_sender_trn.transaction_id %}" class="btn btn-danger">Delete <i class="fas fa-x"></i> </a>
+                              {% if req_receipt_trn.status == "request_settled" %}
+                                <a href="" class="btn btn-success">Settled <i class="fas fa-check-circle"></i> </a>
+                              {% elif req_receipt_trn.status == "request_sent" or req_receipt_trn.status == "request_processing" %}
+                                <a href="{% url "core:transaction-detail" req_receipt_trn.transaction_id %}" class="btn btn-danger">Cancel <i class="fas fa-x"></i> </a>
+                              {% endif %}
                             </td>
                           </tr>
                         {% empty %}
@@ -275,7 +278,7 @@
                         {% for req_receipt_trn in request_recipient_transaction %}
                           <tr data-bs-toggle="modal" data-bs-target="#transactionsMod">
                               <th scope="row">
-                                  <p>{{ req_receipt_trn.recipient.kyc.full_name|title }}</p>
+                                  <p>{{ req_receipt_trn.sender.kyc.full_name|title }}</p>
                                   <p class="mdr">{{ req_receipt_trn.transaction_type|title }}</p>
                               </th>
                               <td>
@@ -291,20 +294,24 @@
                               <p class="inprogress">{{req_receipt_trn.status|title}}</p>
                               {% elif req_receipt_trn.status == "failed" %}
                               <p class="text-danger">{{req_receipt_trn.status|title}}</p>
-                              {% elif req_sender_trn.status == "request_sent" %}
-                              <p class="text-success">{{req_sender_trn.status|title|replace_underscores}}</p>
-                              {% elif req_sender_trn.status == "request_processing" %}
-                              <p class="inprogress">{{req_sender_trn.status|title|replace_underscores}}</p>
-                              {% elif req_sender_trn.status == "request_settled" %}
-                              <p class="text-success">{{req_sender_trn.status|title|replace_underscores}}</p>
+                              {% elif req_receipt_trn.status == "request_sent" %}
+                              <p class="text-success">{{req_receipt_trn.status|title|replace_underscores}}</p>
+                              {% elif req_receipt_trn.status == "request_processing" %}
+                              <p class="inprogress">{{req_receipt_trn.status|title|replace_underscores}}</p>
+                              {% elif req_receipt_trn.status == "request_settled" %}
+                              <p class="text-success">{{req_receipt_trn.status|title|replace_underscores}}</p>
                               {% endif %}
                             </td>
                             <td>
                               <p>+₱{{req_receipt_trn.amount|intcomma}}</p>
                             </td>
                             <td>
-                              <a href="{% url "core:settlement-confirmation" req_receipt_trn.sender.account.account_number req_receipt_trn.transaction_id %}" class="btn btn-primary">Settle <i class="fas fa-check-circle"></i> </a>
-                              <a href="{% url "core:transaction-detail" req_receipt_trn.transaction_id %}" class="btn btn-danger">Cancel <i class="fas fa-x"></i> </a>
+                              {% if req_receipt_trn.status == "request_settled" %}
+                                <a href="" class="btn btn-success">Settled <i class="fas fa-check-circle"></i> </a>
+                              {% elif req_receipt_trn.status == "request_sent" %}
+                                <a href="{% url "core:settlement-confirmation" req_receipt_trn.sender.account.account_number req_receipt_trn.transaction_id %}" class="btn btn-primary">Settle <i class="fas fa-check-circle"></i> </a>
+                              {% elif req_receipt_trn.status == "request_processing" %}  
+                              {% endif %}
                             </td>
                           </tr>
                         {% empty %}

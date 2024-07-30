@@ -108,8 +108,6 @@ def settlement_confirmation(request, account_number, transaction_id):
     account = Account.objects.get(account_number=account_number)
     transaction = Transaction.objects.get(transaction_id=transaction_id)
     
-    
-    
     context = {
         "account": account,
         "transaction": transaction,
@@ -117,4 +115,45 @@ def settlement_confirmation(request, account_number, transaction_id):
     
     return render(request, "payment_request/settlement-confirmation.html", context)
 
+def settlement_processing(request, account_number, transaction_id):
+    account = Account.objects.get(account_number=account_number)
+    transaction = Transaction.objects.get(transaction_id=transaction_id)
+    
+    sender = request.user
+    sender_account = request.user.account
+    
+    if request.method == "POST":
+        pin_number = request.POST.get("pin-number")
+        if pin_number == request.user.account.pin_number:
+            if sender_account.account_balance <= 0 or sender_account.account_balance < transaction.amount:
+                messages.warning(request, "Insufficient Funds. Please ensure your account is funded and try again.")
+            else: 
+                sender_account.account_balance -= transaction.amount
+                sender_account.save()
+                
+                account.account_balance += transaction.amount 
+                account.save()
+                
+                transaction.status = "request_settled"
+                transaction.save()
+                
+                messages.success(request, f"Payment request from {account.user.kyc.full_name} was settled successfully.")
 
+                return redirect("core:settlement-completed", account.account_number, transaction.transaction_id)
+        else: 
+            messages.warning(request, "Incorrect PIN. Please check your PIN and try again.")
+            return redirect("core:settlement-confirmation", account.account_number, transaction.transaction_id)
+    else: 
+        messages.warning(request, "An error occurred. Please try again later.")
+        return redirect("account:dashboard")
+    
+def settlement_completed(request, account_number, transaction_id):
+    account = Account.objects.get(account_number=account_number)
+    transaction = Transaction.objects.get(transaction_id=transaction_id)
+    
+    context = {
+        "account": account,
+        "transaction": transaction,
+    }
+    
+    return render(request, "payment_request/settlement-completed.html", context)
