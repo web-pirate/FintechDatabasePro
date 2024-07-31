@@ -84,11 +84,14 @@ def amount_request_dispatch(request, account_number, transaction_id):
 
     if request.method == "POST":
         pin_number = request.POST.get("pin-number")
-        if pin_number == request.user.account.pin_number:
+        if pin_number == request.user.account.pin_number and request.user.account.pin_number == transaction.sender.account.pin_number :
             transaction.status = "request_sent"
             transaction.save()
             messages.success(request, "Your payment request has been sent successfully.")
             return redirect("core:amount-request-completed", account.account_number, transaction.transaction_id)
+        else: 
+            messages.warning(request, "The provided PIN is incorrect or you are not authorized to perform this action. Please verify your PIN and try again.")
+            return redirect("core:transactions")
     else:
         messages.warning(request, "An error occurred, please try again later.") 
         return redirect("account:dashboard")
@@ -157,3 +160,14 @@ def settlement_completed(request, account_number, transaction_id):
     }
     
     return render(request, "payment_request/settlement-completed.html", context)
+
+def cancel_payment_request(request, transaction_id):
+    transaction = Transaction.objects.get(transaction_id=transaction_id)
+
+    if request.user.account.account_number == transaction.sender.account.account_number:
+        transaction.delete()
+        messages.success(request, "Payment request successfully cancelled.")
+        return redirect("core:transactions")
+    else: 
+        messages.warning(request, "You are not authorized to cancel this request.")
+        return redirect("core:transactions")

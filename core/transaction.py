@@ -29,4 +29,4 @@ def transaction_detail(request, transaction_id):
         "transaction": transaction,
     }
     
-    return render(request, "transaction/transaction-detail.html", context)
+    return render(request, "transaction/transaction-detail.html", context) 

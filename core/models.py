@@ -46,3 +46,4 @@ class Transaction(models.Model):
             return f"{self.user}"
         except: 
             return f"Transaction"
+        
