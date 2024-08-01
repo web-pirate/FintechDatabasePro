@@ -4903,6 +4903,25 @@ label {
         margin-bottom: 20px;
         }
 
+        .form-control, .custom-select {
+            width: 100% ; 
+            background-color: #f9f9f9;
+            border: 1px solid #dadceb ; 
+            border-radius: 4px ; 
+            padding: 0 0.75rem ;
+            outline: none ; 
+            box-sizing: border-box;
+        }
+        
+        .form-control:focus, .custom-select:focus {
+            border-color: #dadceb ;
+            box-shadow: none ; 
+        }
+        
+        .single-input {
+            margin-bottom: 1rem; 
+        }
+
         /* Card Front Part */
 
         .card__main .Front_card {
@@ -5177,6 +5196,7 @@ label {
         .expire_month, .expire_year, .slash{
             color: #fff;
             font-weight: 700;
-            padding-top: 10%;
+            padding-top: 20%;
             
         }
+

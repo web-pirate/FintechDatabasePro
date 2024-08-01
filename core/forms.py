@@ -5,9 +5,9 @@ class CreditCardForm(forms.ModelForm):
     name = forms.CharField(widget=forms.TextInput(attrs={"placeholder":"Card Holder's Name"}))
     card_number = forms.IntegerField(widget=forms.NumberInput(attrs={"placeholder": "Card Number"}))
     cvc = forms.IntegerField(widget=forms.NumberInput(attrs={"placeholder":"CVC/CVV"}))
-    month = forms.IntegerField(widget=forms.NumberInput(attrs={"placeholder":"(MM)"}))
-    year = forms.IntegerField(widget=forms.NumberInput(attrs={"placeholder":"(YYYY)"}))
-    card_type = forms.ChoiceField(choices=[('visa', 'Visa'), ('mastercard', 'MasterCard'), ('verve', 'Verve')], widget=forms.Select(attrs={"class": "form-control custom-select"}))
+    month = forms.IntegerField(widget=forms.NumberInput(attrs={"placeholder":"MM (e.g., 08)"}))
+    year = forms.IntegerField(widget=forms.NumberInput(attrs={"placeholder":"YY (e.g., 24)"}))
+    card_type = forms.ChoiceField(choices=[('master', 'Master'), ('visa', 'Visa'), ('verve', 'Verve')], widget=forms.Select(attrs={"class": "form-control custom-select"}))
 
     class Meta: 
         model = CreditCard
