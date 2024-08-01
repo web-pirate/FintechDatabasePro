@@ -22,6 +22,12 @@ TRANSACTION_STATUS = (
     ("request_settled", "Request Settled"),
 )
 
+CARD_TYPE = (
+    ("master", "Master"),
+    ("visa", "Visa"),
+    ("verve", "Verve"),
+)
+
 class Transaction(models.Model):
     transaction_id = ShortUUIDField(unique=True, length=15, max_length=20, prefix="TRN")
     
@@ -47,3 +53,24 @@ class Transaction(models.Model):
         except: 
             return f"Transaction"
         
+class CreditCard(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    card_id = ShortUUIDField(unique=True, length=5, max_length=20, prefix="CARD", alphabet="1234567890")
+    
+    name = models.CharField(max_length=100)
+    card_number = models.CharField(max_length=19) 
+    month = models.IntegerField()
+    year = models.IntegerField()
+    cvc = models.CharField(max_length=4)  
+    
+    amount = models.DecimalField(max_digits=12, decimal_places=2, default=0.00)
+    
+    card_type = models.CharField(choices=CARD_TYPE, max_length=20, default="master")
+    card_status = models.BooleanField(default=True)
+    
+    date = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self): 
+        return f"{self.user}"
+    
+    
