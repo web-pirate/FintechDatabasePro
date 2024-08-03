@@ -36,6 +36,6 @@ urlpatterns = [
 
     # Card Details
     path("card/<card_id>/", credit_card.card_detail, name="card-details"),
-    
+    path("fund-card/<card_id>/", credit_card.fund_card, name="fund-card"),    
 ]
 
