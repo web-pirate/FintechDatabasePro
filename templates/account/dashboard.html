@@ -22,15 +22,14 @@
                                 <div class="top-area">
                                     <div class="left-side">
                                         <h5>{{ kyc.full_name|title }}</h5>
-                                        <h2>{{ account.account_balance|intcomma }}</h2>
-                                        {% comment %} <h5 class="r eceive">Last Received <span>₱25,700.00</span></h5> {% endcomment %}
+                                        <h2>₱{{ account.account_balance|intcomma}}</h2>
+                                        {% comment %} <h5 class="receive">Last Received <span>₱25,700.00</span></h5> {% endcomment %}
                                     </div>
                                     <div class="right-side">
-                                        <div class="right-top">
+                                        {% comment %} <div class="right-top">
                                             <select>
-                                                <option value="1">US Dollar</option>
+                                                <option value="1">Philippines Peso</option>
                                                 <option value="2">US Dollar</option>
-                                                <option value="3">US Dollar</option>
                                             </select>
                                             <div class="dropdown-area">
                                                 <button type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,10 +37,10 @@
                                                 </button>
                                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                                     <li><a class="dropdown-item" href="#">Fiat Currency</a></li>
-                                                    <li><a class="dropdown-item" href="#">crypto Currency</a></li>
+                                                    <li><a class="dropdown-item" href="#">Crypto Currency</a></li>
                                                 </ul>
                                             </div>
-                                        </div>
+                                        </div> {% endcomment %}
                                         {% comment %} <div class="right-bottom">
                                             <h4>₱30,700.00</h4>
                                             <h5>Payouts</h5>

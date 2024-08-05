@@ -182,18 +182,21 @@
                       </div>
                     </div>
                     <ul>
+                      {% if request.user.is_superuser %}
                       <li class="border-area">
                         <a href="/admin"
                           ><i class="fas fa-user"></i>Admin</a
                         >
                       </li>
+                      {% endif %}
+
                       <li class="border-area">
                         <a href="account.html"
                           ><i class="fas fa-cog"></i>Settings</a
                         >
                       </li>
                       <li>
-                        <a href="javascript:void(0)"
+                        <a href="{% url "user_auths:sign-out" %}"
                           ><i class="fas fa-sign-out"></i>Logout</a
                         >
                       </li>
@@ -207,7 +210,7 @@
                 <i class="fa-solid fa-xmark"></i>
               </div>
               <div class="sidebar-logo">
-                <a href="dashboard.html">
+                <a href="/">
                   <img src="{% static 'assets/images/logo.png' %}" alt="logo" id="logo-img">
                 </a>
               </div>
@@ -227,7 +230,7 @@
                 <li>
                   <a href="{% url 'core:search-account' %}">
                     <img src="{% static 'assets1/images/bootstrap-icons-1.8.2/credit-card.svg' %}" class="icon-spacing" alt="Credit Card Icon">
-                    <span>Pay</span>
+                    <span>Transfer</span>
                   </a>
                 </li>
                 <li>
@@ -237,21 +240,9 @@
                   </a>
                 </li>
                 <li>
-                  <a href="money-exchange.html">
-                    <img src="{% static 'assets1/images/bootstrap-icons-1.8.2/currency-exchange.svg' %}" class="icon-spacing" alt="Currency Exchange Icon">
-                    <span>Exchange</span>
-                  </a>
-                </li>
-                <li>
                   <a href="recipients.html">
                     <img src="{% static 'assets1/images/bootstrap-icons-1.8.2/person.svg' %}" class="icon-spacing" alt="Person Icon">
                     <span>Recipients</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="crypto.html">
-                    <img src="{% static 'assets1/images/bootstrap-icons-1.8.2/currency-bitcoin.svg' %}" class="icon-spacing" alt="Bitcoin Icon">
-                    <span>Crypto</span>
                   </a>
                 </li>
                 <li>
@@ -281,7 +272,7 @@
                   </a>
                 </li>
                 <li>
-                  <a href="javascript:void(0)">
+                  <a href="{% url "user_auths:sign-out" %}">
                     <img src="{% static 'assets1/images/bootstrap-icons-1.8.2/box-arrow-right.svg' %}" class="icon-spacing" alt="Box Arrow Right Icon">
                     <span>Quit</span>
                   </a>

@@ -112,10 +112,10 @@
                                                                                     </button>  
                                                                                     <button type="button" class="reg btn btn-success w-100 mb-2" data-bs-toggle="modal" data-bs-target="#withdraw_fund">
                                                                                         Withdraw
+                                                                                    </button>
+                                                                                    <button type="button" class="reg btn btn-danger w-100 mb-2" data-bs-toggle="modal" data-bs-target="#card_removal_confirmation">
+                                                                                        Remove Card
                                                                                     </button>  
-                                                                                    <a href="" class="reg btn btn-danger w-100 mb-2">
-                                                                                        Delete Card
-                                                                                    </a> 
                                                                                 </div>                                                                                                                                                      
                                                                             </li>
                                                                         </ul>
@@ -138,7 +138,8 @@
         </div>
     </section>
     <!-- Dashboard Section end -->
- <!-- Add Card Popup start -->
+
+ <!-- Fund Card Popup start -->
  <div class="add-card">
     <div class="container-fruid">
         <div class="row">
@@ -191,11 +192,9 @@
         </div>
     </div>
 </div>
-<!-- Add Card Popup start -->
+<!-- Add Card Popup End -->
 
-
-
- <!-- Add Card Popup start -->
+ <!-- Withdraw from Card Popup start -->
  <div class="add-card">
     <div class="container-fruid">
         <div class="row">
@@ -207,7 +206,7 @@
                                 <h6>Withdraw from Card</h6>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
                             </div>
-                            <form action="" method="POST">
+                            <form action="{% url "core:withdraw-from-card" card.card_id %}" method="POST">
                                 {% csrf_token %}
                                 <div class="row justify-content-center">
                                     
@@ -237,5 +236,35 @@
         </div>
     </div>
 </div>
-<!-- Add Card Popup start -->
-{% endblock content %}
+ <!-- Withdraw from Card Popup End -->
+
+<!-- Confirm Card Removal start -->
+<div class="add-card">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="modal fade" id="card_removal_confirmation" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header justify-content-between">
+                                <h6>Remove Card</h6>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
+                            </div>
+                            <div class="modal-body text-center">
+                                <p style="font-size: 1rem; font-weight: bold;">
+                                    Are you sure you want to remove this card? <br>This action cannot be undone.
+                                </p>
+                                <div class="alert mt-2" role="alert" style="background-color: #fff3cd; color: #856404; font-size: 0.9rem;">
+                                    Note: Any funds will be transferred to your account.
+                                </div>
+                                <a href="{% url 'core:remove-card' card.card_id %}" class="cmn-btn w-100 mt-1">Confirm Card Removal</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Confirm Card Removal end -->
+ {% endblock content %}
