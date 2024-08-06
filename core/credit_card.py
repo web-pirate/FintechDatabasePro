@@ -53,4 +53,21 @@ def withdraw_from_card(request, card_id):
         else: 
             messages.warning(request, "Insufficient funds.")
             return redirect('core:card-details', card.card_id)
-             
+
+def remove_card(request, card_id):
+    card = CreditCard.objects.get(card_id=card_id, user=request.user)
+    account = request.user.account 
+
+    if card.amount > 0: 
+        account.account_balance += card.amount
+        account.save()
+        
+        card.delete()
+        
+        messages.success(request, "Card removed successfully")
+        return redirect("account:dashboard")
+    else:    
+        card.delete()
+            
+        messages.success(request, "Card removed successfully")
+        return redirect("account:dashboard")

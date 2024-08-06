@@ -38,4 +38,5 @@ urlpatterns = [
     path("card/<card_id>/", credit_card.card_detail, name="card-details"),
     path("fund-card/<card_id>/", credit_card.fund_card, name="fund-card"),  
     path("withdraw-from-card/<card_id>/", credit_card.withdraw_from_card, name="withdraw-from-card"),      
+    path("remove-card/<card_id>/", credit_card.remove_card, name="remove-card"),    
 ]
