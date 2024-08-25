@@ -6,7 +6,7 @@ An MVP banking app built with Python, Django, & Bootstrap demonstrating core ban
 
 #### Landing Page
 
-![demo-1](https://res.cloudinary.com/dotera808/image/upload/v1724569119/KCoin/Landing_Page_2_wolcsf.gif)
+![Landing](https://res.cloudinary.com/dotera808/image/upload/v1724570265/KCoin/Landing_Page_3_cgwryp.gif)
 
 #### Authentication
 
@@ -14,7 +14,7 @@ An MVP banking app built with Python, Django, & Bootstrap demonstrating core ban
 
 #### Know Your Client (KYC)
 
-![Authentication](https://res.cloudinary.com/dotera808/image/upload/v1724567637/KCoin/KYC_Flow_kdyype.gif)
+![KYC](https://res.cloudinary.com/dotera808/image/upload/v1724570264/KCoin/KYC_rnwhug.gif)
 
 #### Money Transfer
 
@@ -22,7 +22,7 @@ An MVP banking app built with Python, Django, & Bootstrap demonstrating core ban
 
 #### Payment Request
 
-![Authentication](https://res.cloudinary.com/dotera808/image/upload/v1724568703/KCoin/Payment_Request_2_zbwxx0.gif)
+![Request](https://res.cloudinary.com/dotera808/image/upload/v1724570264/KCoin/Payment_Request_3_lcx5o8.gif)
 
 ## Contact
 
