@@ -6,7 +6,7 @@ An MVP banking app built with Python, Django, & Bootstrap demonstrating core ban
 
 #### Landing Page
 
-![Landing](https://res.cloudinary.com/dotera808/image/upload/v1724570265/KCoin/Landing_Page_3_cgwryp.gif)
+![Landing](https://res.cloudinary.com/dotera808/image/upload/v1724570570/KCoin/LandingPage_a6tww6.gif)
 
 #### Authentication
 
