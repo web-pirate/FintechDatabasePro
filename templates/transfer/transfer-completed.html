@@ -22,7 +22,7 @@
                                 <img src="{% static 'assets1/images/icon/submitted-icon.png' %}" alt="icon">
                             </div>
                             <h3>Submitted</h3>
-                            <p>Amount transfer <small><b><u>{{transaction.transaction_id}}</u></b></small> was sent to <b>{{account.user.kyc.full_name}}</b></p>
+                            <p>Amount transfer <small><b><u>{{transaction.transaction_id}}</u> ({{transaction.amount}} PHP)</b></small> was sent to <b>{{transaction.recipient.kyc.full_name}}</b></p>
                             <hr>
                             <a href=""><small>View Details</small></a> | <a href=""><small>Send another Payment</small></a>
                         </div>

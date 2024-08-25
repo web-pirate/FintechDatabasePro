@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from account .models import Account
+from account .models import KYC, Account
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib import messages
@@ -9,32 +9,39 @@ from core.models import Transaction
 @login_required
 def search_users_by_account_number(request):
     
-    # account = Account.objects.all()
-    account = Account.objects.all()
+    kyc = KYC.objects.get(user=request.user)
+    account = Account.objects.get(user=request.user)
+    account_query = Account.objects.all()
     query = request.POST.get("account_number")
     
     if query:
-        account = account.filter(
+        account_query = account_query.filter(
             Q(account_number=query)|
             Q(account_id=query) 
-        ).distinct()    
+        ).distinct()
     
     context = {
+        "kyc": kyc,
         "account": account,
+        "account_query": account_query,
         "query": query,
     }
     return render(request, "transfer/search-user-by-account-number.html", context)
 
 def amount_transfer(request, account_number):
-
+    kyc = KYC.objects.get(user=request.user)
+    account = Account.objects.get(user=request.user)
+    
     try:
-        account = Account.objects.get(account_number=account_number)
+        account_query = Account.objects.get(account_number=account_number)
     except: 
         messages.warning(request, "Account does not exist.")
         return redirect("core:search-account")
     
     context = { 
+        "kyc": kyc,
         "account": account,
+        "account_query": account_query,
     }
     return render(request, "transfer/amount-transfer.html", context)
     
@@ -75,16 +82,20 @@ def amount_transfer_process(request, account_number):
             return redirect("account:account")
              
 def transfer_confirmation(request, account_number, transaction_id):
+    kyc = KYC.objects.get(user=request.user)
+    account = Account.objects.get(user=request.user)
     
     try: 
-        account = Account.objects.get(account_number=account_number)
+        account_query = Account.objects.get(account_number=account_number)
         transaction = Transaction.objects.get(transaction_id=transaction_id)
     except:
         messages.warning(request, "Transaction does not exist.")
         return redirect("account:account")
     
     context = {
+        "kyc": kyc,
         "account": account,
+        "account_query": account_query,
         "transaction": transaction,
     }
     return render(request, "transfer/transfer-confirmation.html", context)
@@ -124,16 +135,20 @@ def transfer_process(request, account_number, transaction_id):
         return redirect("account:account")
 
 def transfer_completed(request, account_number, transaction_id):
+    kyc = KYC.objects.get(user=request.user)
+    account = Account.objects.get(user=request.user)
     
     try: 
-        account = Account.objects.get(account_number=account_number)
+        account_query = Account.objects.get(account_number=account_number)
         transaction = Transaction.objects.get(transaction_id=transaction_id)
     except:
         messages.warning(request, "Transfer does not exist.")
         return redirect("account:account")
     
     context = {
+        "kyc": kyc,
         "account": account,
+        "account_query": account_query,
         "transaction": transaction,
     }
     return render(request, "transfer/transfer-completed.html", context)

@@ -22,7 +22,7 @@
                                 <img src="{% static 'assets1/images/icon/submitted-icon.png' %}" alt="icon">
                             </div>
                             <h3>Submitted</h3>
-                            <p>Payment request <small><b> <u>{{transaction.transaction_id}}</u> </b></small> was sent to <b>{{account.user.kyc.full_name}}</b></p>
+                            <p>Payment request <small><b> <u>{{transaction.transaction_id}}</u> of ({{transaction.amount}})PHP</b></small> was sent to <b>{{transaction.recipient}}</b></p>
                             <hr>
                             <a href=""><small>View Details</small></a> | <a href="{% url "core:request-search-users" %}"><small>Send another request</small></a>
                         </div>

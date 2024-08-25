@@ -10,9 +10,6 @@
                 <div class="main-content">
                     <div class="head-area d-flex align-items-center justify-content-between">
                         <h4>Request Payment</h4>
-                        <div class="icon-area">
-                            {% comment %} <img src="{% static 'assets1/images/icon/support-icon.png' %}" alt="icon"> {% endcomment %}
-                        </div>
                     </div>
                     <form method="POST" class="flex-fill">
                         {% csrf_token %}
@@ -27,7 +24,7 @@
                     {% endif %}
                     <div class="user-select">
                         {% if query %}                        
-                            {% for acc in account  %}
+                            {% for acc in account_query  %}
                                 <div class="single-user">
                                     <div class="left d-flex align-items-center">
                                         <div class="img-area">
@@ -50,17 +47,11 @@
                             {% endfor %}
                         {% endif %}
                     </div>
-                    <div class="footer-area mt-40">
-                        <a href="pay.html">Previous Step</a>
-                        <a href="pay-step-2.html" class="active">Next</a>
-                    </div>
                 </div>
             </div>
         </div>
     </section>
     <!-- Dashboard Section end -->
-
-
 
     <!-- Add Recipients Popup start -->
     <div class="add-recipients">

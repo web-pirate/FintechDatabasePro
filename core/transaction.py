@@ -1,11 +1,15 @@
 from django.shortcuts import render, redirect
 from core.models import Transaction
+from account.models import KYC, Account
 from account.models import Account
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
 @login_required
 def transaction_list(request): 
+    kyc = KYC.objects.get(user=request.user)
+    account = Account.objects.get(user=request.user)
+    
     sender_transaction = Transaction.objects.filter(sender=request.user, transaction_type="transfer").order_by("-id")
     recipient_transaction = Transaction.objects.filter(recipient=request.user, transaction_type="transfer").order_by("-id")
     
@@ -13,6 +17,8 @@ def transaction_list(request):
     request_recipient_transaction = Transaction.objects.filter(recipient=request.user, transaction_type="request").order_by("-id")
     
     context = {
+        "kyc": kyc,
+        "account": account,
         "sender_transaction": sender_transaction,
         "recipient_transaction": recipient_transaction,
         "request_recipient_transaction":request_recipient_transaction,
